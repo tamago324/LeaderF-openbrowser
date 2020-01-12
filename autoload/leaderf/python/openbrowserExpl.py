@@ -3,7 +3,7 @@
 
 import os
 import os.path
-import json
+import vim
 from leaderf.utils import *
 from leaderf.explorer import *
 from leaderf.manager import *
@@ -17,12 +17,22 @@ class OpenbrowserExplorer(Explorer):
         pass
 
     def getContent(self, *args, **kwargs):
-        engins = lfEval("g:openbrowser_search_engines")
-        bookmarks = lfEval("g:openbrowser_bookmarks")
+        # g:openbrowser_search_engines
+        engins = vim.vars.get("openbrowser_search_engines", {})
+        # g:Lf_openbrowser_bookmarks
+        bookmarks = vim.vars.get("Lf_openbrowser_bookmarks", {})
 
+        # Use lfBytes2Str because return value is bytes
         sources = []
-        sources.extend([[name, url] for name, url in engins.items()])
-        sources.extend([[name, url] for name, url in bookmarks.items()])
+        sources.extend(
+            [[lfBytes2Str(name), lfBytes2Str(url)] for name, url in engins.items()]
+        )
+        sources.extend(
+            [[lfBytes2Str(name), lfBytes2Str(url)] for name, url in bookmarks.items()]
+        )
+
+        if len(sources) == 0:
+            return []
 
         max_name_len = max(
             map(lambda x: int(lfEval("strdisplaywidth('{}')".format(x[0]))), sources)
@@ -65,7 +75,7 @@ class OpenbrowserExplManager(Manager):
         name = self._getDigest(line, 1)
         url = self._getDigest(line, 2)
 
-        if '{query}' in url:
+        if "{query}" in url:
             lfCmd("call feedkeys(':OpenBrowserSmartSearch -{} ', 'n')".format(name))
         else:
             lfCmd("call openbrowser#open('{}')".format(url))
@@ -108,7 +118,7 @@ class OpenbrowserExplManager(Manager):
             id = int(lfEval("matchid"))
             self._match_ids.append(id)
         else:
-            id = int(lfEval("matchadd('Lf_hl_openbrowserUrl', '\s\+\zs"".\+')"))
+            id = int(lfEval("matchadd('Lf_hl_openbrowserUrl', '\s\+\zs" ".\+')"))
             self._match_ids.append(id)
 
     def _createHelp(self):

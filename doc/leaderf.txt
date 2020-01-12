@@ -20,15 +20,28 @@ REQUIREMENTS~
 USAGE~
 
 ------------------------------------------------------------------------------
+OPTIONS~
+
+g:Lf_openbrowser_bookmarks                      *g:Lf_openbrowser_bookmarks*
+    URL used in LeaderF-openbrowser.
+
+    example:
+>
+        let g:Lf_openbrowser_bookmarks = {
+        \   'vue.js': 'https://jp.vuejs.org/v2/api/',
+        \   'bulma': 'https://bulma.io/documentation/',
+        \}
+<
+------------------------------------------------------------------------------
 COMMANDS~
 
-:LeaderfOpenBrowser                                *:LeaderfOpenBrowser*
+:LeaderfOpenBrowser                             *:LeaderfOpenBrowser*
     Launch LeaderF to navigate the bookmark.
 
 ------------------------------------------------------------------------------
 HIGHLIGHTS~
 
-Lf_hl_openbrowserPath                              *Lf_hl_openbrowserUrl*
+Lf_hl_openbrowserPath                           *Lf_hl_openbrowserUrl*
     default: `highlight def link Lf_hl_openbrowserUrl Directory`
 
 
