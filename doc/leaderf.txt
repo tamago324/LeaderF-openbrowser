@@ -1,0 +1,36 @@
+*LeaderF-openbrowser*
+
+INTRODUCTION~
+
+This plugin is an extension of LeaderF, it is used to navigate the openbrowser
+url.
+
+This plugin require:
+* LeaderF (https://github.com/Yggdroot/LeaderF)
+* open-browser.vim (https://github.com/tyru/open-browser.vim)
+
+==============================================================================
+REQUIREMENTS~
+
+- vim7.4.330 or higher.
+- vim compiled with Python support, you can check by using `echo has('python')`
+  or `echo has('python3')` to see if the result is 1.
+
+==============================================================================
+USAGE~
+
+------------------------------------------------------------------------------
+COMMANDS~
+
+:LeaderfOpenBrowser                                *:LeaderfOpenBrowser*
+    Launch LeaderF to navigate the bookmark.
+
+------------------------------------------------------------------------------
+HIGHLIGHTS~
+
+Lf_hl_openbrowserPath                              *Lf_hl_openbrowserUrl*
+    default: `highlight def link Lf_hl_openbrowserUrl Directory`
+
+
+==============================================================================
+vim:tw=78:ts=4:ft=help:norl
