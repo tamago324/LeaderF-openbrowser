@@ -4,6 +4,7 @@
 import os
 import os.path
 import vim
+import sys
 from leaderf.utils import *
 from leaderf.explorer import *
 from leaderf.manager import *
@@ -41,6 +42,9 @@ class OpenbrowserExplorer(Explorer):
         lines = []
         for source in sources:
             name, url = source
+            if sys.version_info >= (3, 0):
+                import urllib.parse
+                url = urllib.parse.unquote(url)
             width = int(lfEval("strdisplaywidth('{}')".format(name)))
             space_num = max_name_len - width
             lines.append('{}{} "{}"'.format(name, " " * space_num, url))
