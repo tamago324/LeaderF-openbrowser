@@ -84,6 +84,9 @@ class OpenbrowserExplManager(Manager):
         if "{query}" in url:
             lfCmd("call feedkeys(':OpenBrowserSmartSearch -{} ', 'n')".format(name))
         else:
+            if sys.version_info >= (3, 0):
+                import urllib.parse
+                url = urllib.parse.quote(url, safe=':/')
             lfCmd("call openbrowser#open('{}')".format(url))
 
     def _getDigest(self, line, mode):
