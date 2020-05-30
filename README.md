@@ -1,4 +1,4 @@
-# LeaderF-bookmark
+# LeaderF-openbrowser
 
 This Plugin use LeaderF to navigate the OpenBrowser url.
 
