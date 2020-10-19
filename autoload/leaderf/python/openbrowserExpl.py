@@ -10,6 +10,9 @@ from leaderf.explorer import *
 from leaderf.manager import *
 
 
+if lfEval("has('nvim')") == '1':
+    lfBytes2Str = str
+
 # *****************************************************
 # OpenbrowserExplorer
 # *****************************************************
